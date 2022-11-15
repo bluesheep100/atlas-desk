@@ -1,19 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    @vite(['resources/js/app.js'])
-</head>
-<body>
-<div class="container">
+<x-app>
     <div class="row justify-content-center">
         <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto asperiores beatae
             culpa, distinctio doloribus earum enim id molestias nostrum officia porro qui quia sint tempora totam ullam
@@ -28,6 +13,4 @@
             veritatis!
         </div>
     </div>
-</div>
-</body>
-</html>
+</x-app>
