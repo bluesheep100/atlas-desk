@@ -13,7 +13,7 @@
     @vite(['resources/js/app.js'])
 </head>
 <body>
-<div class="container">
+<div class="container pt-4">
     {{ $slot }}
 </div>
 </body>
