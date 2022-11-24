@@ -50,7 +50,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project): View
     {
-        return view();
+        return view('projects.show', compact('project'));
     }
 
     /**
@@ -61,19 +61,18 @@ class ProjectController extends Controller
      */
     public function edit(Project $project): View
     {
-        //
+        return view('projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Project $project)
+    public function update(Project $project): RedirectResponse
     {
-        //
+        return Redirect::route('projects.show', compact('project'));
     }
 
     /**
@@ -84,6 +83,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project): RedirectResponse
     {
+        $project->delete();
+
         return Redirect::route('projects.index');
     }
 }
