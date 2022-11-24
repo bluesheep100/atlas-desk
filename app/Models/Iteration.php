@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class Project extends Model implements Validatable
+class Iteration extends Model implements Validatable
 {
     use HasFactory;
 
@@ -18,18 +18,13 @@ class Project extends Model implements Validatable
         return ['name' => ['required', 'min:5']];
     }
 
-    public function users(): Relation
+    public function project(): Relation
     {
-        return $this->belongsToMany(User::class);
-    }
-
-    public function iterations(): Relation
-    {
-        return $this->hasMany(Iteration::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function tasks(): Relation
     {
-        return $this->hasManyThrough(Task::class, Iteration::class);
+        return $this->hasMany(Task::class);
     }
 }
