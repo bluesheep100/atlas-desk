@@ -11,11 +11,11 @@ class Task extends Model implements Validatable
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
 
     public static function rules(): array
     {
-        return ['name' => ['required', 'min:5']];
+        return ['name' => ['required', 'min:5'], 'description' => ['present']];
     }
 
     public function iteration(): Relation
