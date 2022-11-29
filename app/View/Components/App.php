@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class App extends Component
 {
@@ -11,17 +12,14 @@ class App extends Component
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(public bool $fluid = false) {}
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return \Illuminate\View\View
      */
-    public function render()
+    public function render(): View
     {
         return view('components.app');
     }
