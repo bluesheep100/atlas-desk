@@ -1,5 +1,5 @@
-<x-app>
-    <table class="table table-bordered">
+<x-app :back="route('projects.index')">
+    <table class="table table-bordered mt-3">
         <thead>
         <tr>
             <td>Name</td>
