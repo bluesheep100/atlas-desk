@@ -2,13 +2,16 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="card">
+                <div class="card-header">
+                    <span class="fs-3">Projects</span>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary float-end">Users</a>
+                </div>
                 <div class="card-body">
-                    <h1>Projects</h1>
                     <a href="{{ route('projects.create') }}" class="btn btn-primary mt-3">New project</a>
                     <ul class="py-3 list-group">
                         @foreach($projects as $project)
                             <li class="list-group-item">
-                                <a href="{{ route('projects.show', compact('project')) }}">{{ $project->name }}</a>
+                                <a href="{{ route('projects.show', ['project' => $project, 'iteration' => $project->iterations()->latest()->first()->id]) }}">{{ $project->name }}</a>
                             </li>
                         @endforeach
                     </ul>

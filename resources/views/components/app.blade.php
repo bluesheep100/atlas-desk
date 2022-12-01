@@ -15,8 +15,16 @@
     @vite(['resources/js/app.js'])
 </head>
 <body class="h-100">
-<div @class(['h-100', 'container' => !$fluid, 'container-fluid' => $fluid])>
-    {{ $slot }}
-</div>
+@if($fluid)
+    <div class="h-100 container-fluid">
+        <x-back :route="$back"/>
+        {{ $slot }}
+    </div>
+@else
+    <div class="h-100 container pt-3">
+        <x-back :route="$back"/>
+        {{ $slot }}
+    </div>
+@endif
 </body>
 </html>

@@ -12,7 +12,10 @@ class App extends Component
      *
      * @return void
      */
-    public function __construct(public bool $fluid = false) {}
+    public function __construct(
+        public ?string $back = null,
+        public bool $fluid = false
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

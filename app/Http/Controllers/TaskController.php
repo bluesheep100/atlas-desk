@@ -35,17 +35,6 @@ class TaskController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Task $task
-     * @return \Illuminate\View\View
-     */
-    public function show(Task $task): View
-    {
-        return view('tasks.show', compact('task'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Task $task
@@ -53,7 +42,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task): View
     {
-        return view('tasks.edit', compact('task'));
+        $iteration = $task->iteration;
+        $project = $iteration->project;
+
+        return view('tasks.edit', compact('task', 'iteration', 'project'));
     }
 
     /**

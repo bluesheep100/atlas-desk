@@ -14,6 +14,7 @@ class FormPage extends Component
      */
     public function __construct(
         public string $action,
+        public ?string $back = null,
         public ?string $method = null,
         public ?string $append = null,
         public ?string $header = null

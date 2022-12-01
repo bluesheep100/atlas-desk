@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Iteration;
 use App\Models\Project;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -50,7 +51,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project): View
     {
-        return view('projects.show', compact('project'));
+        $iteration = Iteration::find(request('iteration')) ?? Iteration::first();
+
+        return view('projects.show', compact('project', 'iteration'));
     }
 
     /**
