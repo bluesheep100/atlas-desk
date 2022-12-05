@@ -11,7 +11,7 @@
                     <ul class="py-3 list-group">
                         @foreach($projects as $project)
                             <li class="list-group-item">
-                                <a href="{{ route('projects.show', ['project' => $project, 'iteration' => $project->iterations()->latest()->first()->id]) }}">{{ $project->name }}</a>
+                                <a href="{{ route('projects.show', ['project' => $project, 'iteration' => optional($project->iterations()->latest()->first())->id]) }}">{{ $project->name }}</a>
                             </li>
                         @endforeach
                     </ul>
