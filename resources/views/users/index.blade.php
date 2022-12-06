@@ -1,4 +1,9 @@
 <x-app :back="route('projects.index')">
+    <div class="row flex-row-reverse">
+        <div class="col-auto">
+            <a href="{{ route('users.create') }}" class="btn btn-primary">New User</a>
+        </div>
+    </div>
     <table class="table table-bordered mt-3">
         <thead>
         <tr>

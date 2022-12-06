@@ -1,4 +1,4 @@
-<x-template.form-page :action="route('users.store', compact('task'))" header="Create User" :back="route('users.index')">
+<x-template.form-page :action="route('users.store')" header="Create User" :back="route('users.index')">
     <x-forms.input name="name"/>
     <x-forms.input name="email" type="email"/>
 

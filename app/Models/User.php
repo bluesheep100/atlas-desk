@@ -49,6 +49,7 @@ class User extends Authenticatable implements Validatable
         return [
             'name' => ['required'],
             'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed']
         ];
     }
 

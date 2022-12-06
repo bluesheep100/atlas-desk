@@ -38,13 +38,15 @@ class UserController extends Controller
      */
     public function store(): RedirectResponse
     {
+        User::create(request()->validate(User::rules()));
+
         return Redirect::route('users.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param User $user
+     * @param \App\Models\User $user
      * @return \Illuminate\View\View
      */
     public function edit(User $user): View
@@ -55,12 +57,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param User  $id
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(User $user): RedirectResponse
     {
-        $user->update(request()->validate(User::rules()));
+        $user->update(request()->validate(array_merge(User::rules(), ['password' => ''])));
 
         return Redirect::route('users.index');
     }
@@ -68,7 +70,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param User $user
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user): RedirectResponse

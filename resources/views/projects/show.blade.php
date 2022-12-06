@@ -11,10 +11,17 @@
             </a>
         </div>
         <div class="col">
-            <span class="fs-4">Iteration 1</span>
+            @if($iteration)
+                <span class="fs-4">{{ $iteration->name }}</span>
+            @endif
+
+            <a href="{{ route('projects.iterations.create', compact('project')) }}"
+               class="btn  btn-link btn-sm p-0 align-baseline">
+                <i class="fa-solid fa-plus"></i>
+            </a>
         </div>
         <div class="col-auto">
-            <span class="fs-4">Fiskekage</span>
+            <span class="fs-4">{{ $project->name }}</span>
         </div>
     </div>
 
@@ -25,7 +32,8 @@
                     <div class="card my-2">
                         <div class="card-header">
                             {{ $task->name }}
-                            <a href="{{ route('tasks.edit', compact('task')) }}" class="btn btn-sm btn-info float-end">
+                            <a href="{{ route('tasks.edit', compact('task')) }}"
+                               class="btn btn-sm btn-primary float-end">
                                 <i class="fa-solid fa-edit"></i>
                             </a>
                         </div>
