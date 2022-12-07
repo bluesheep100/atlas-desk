@@ -11,6 +11,11 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(User::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +43,11 @@ class UserController extends Controller
      */
     public function store(): RedirectResponse
     {
-        User::create(request()->validate(User::rules()));
+        $data = array_merge(
+            request()->validate(User::rules()),
+            ['password' => bcrypt(request('password'))]
+        );
+        User::create($data);
 
         return Redirect::route('users.index');
     }

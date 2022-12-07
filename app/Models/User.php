@@ -41,6 +41,7 @@ class User extends Authenticatable implements Validatable
      * @var array<string, string>
      */
     protected $casts = [
+        'is_admin' => 'bool',
         'email_verified_at' => 'datetime',
     ];
 
@@ -51,6 +52,11 @@ class User extends Authenticatable implements Validatable
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed']
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
     }
 
     public function project(): Relation
