@@ -4,6 +4,7 @@
             <a href="#" class="btn">
                 <i class="fa-solid fa-angle-left fs-4"></i>
             </a>
+
         </div>
         <div class="col-auto">
             <a href="#" class="btn ">
@@ -20,6 +21,11 @@
                 <i class="fa-solid fa-plus"></i>
             </a>
         </div>
+
+        <div class="col-auto">
+        <a href="{{ route('projects.index', compact('project')) }}" class="btn">project overview</a>
+        </div>
+
         <div class="col-auto">
             <span class="fs-4">{{ $project->name }}</span>
 
