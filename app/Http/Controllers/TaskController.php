@@ -58,7 +58,7 @@ class TaskController extends Controller
     {
         $task->update(request()->validate(Task::rules()));
 
-        return Redirect::route('tasks.show');
+        return Redirect::route('projects.show', ['project' => $task->iteration->project]);
     }
 
     /**

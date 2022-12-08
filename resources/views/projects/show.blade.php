@@ -31,37 +31,46 @@
     </div>
 
     <div class="row border-bottom border-secondary">
-        <div class="col border-end border-secondary">
-            @if($iteration)
-                @foreach($iteration->tasks as $task)
-                    <div class="card my-2">
-                        <div class="card-header">
-                            {{ $task->name }}
-                            <a href="{{ route('tasks.edit', compact('task')) }}"
-                               class="btn btn-sm btn-primary float-end">
-                                <i class="fa-solid fa-edit"></i>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            {{ $task->description }}
-                        </div>
-                    </div>
+        <div class="col text-center border-end border-secondary pt-2">
+            <h4>Open</h4>
+        </div>
+        <div class="col text-center border-end border-secondary pt-2">
+            <h4>In Progress</h4>
+        </div>
+        <div class="col text-center border-end border-secondary pt-2">
+            <h4>On Hold</h4>
+        </div>
+        <div class="col text-center pt-2">
+            <h4>Closed</h4>
+        </div>
+    </div>
+    <div class="row border-bottom border-secondary">
+        @if($iteration)
+            <div class="col border-end border-secondary">
+                @foreach($iteration->tasks()->status('open')->get() as $task)
+                    <x-task :task="$task"/>
                 @endforeach
-            @endif
-        </div>
+            </div>
 
-        <div class="col border-end border-secondary">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, quos, repellat. Ab culpa dolore ea eius
-            illum necessitatibus neque nesciunt nisi quisquam temporibus? Accusantium dignissimos ea et explicabo quod,
-            tenetur.
-        </div>
-        <div class="col border-end border-secondary">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aspernatur atque beatae commodi dicta
-            dolor eos est harum illo natus nihil numquam provident quasi quo, recusandae, sint tenetur voluptate.
-        </div>
-        <div class="col">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aspernatur atque beatae commodi dicta
-            dolor eos est harum illo natus nihil numquam provident quasi quo, recusandae, sint tenetur voluptate.
-        </div>
+            <div class="col border-end border-secondary">
+                @foreach($iteration->tasks()->status('progress')->get() as $task)
+                    <x-task :task="$task"/>
+                @endforeach
+            </div>
+            <div class="col border-end border-secondary">
+                @foreach($iteration->tasks()->status('hold')->get() as $task)
+                    <x-task :task="$task"/>
+                @endforeach
+            </div>
+            <div class="col">
+                @foreach($iteration->tasks()->status('closed')->get() as $task)
+                    <x-task :task="$task"/>
+                @endforeach
+            </div>
+        @else
+            <div class="col text-center">
+                No iterations found.
+            </div>
+        @endif
     </div>
 </x-app>

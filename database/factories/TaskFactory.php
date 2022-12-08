@@ -22,6 +22,7 @@ class TaskFactory extends Factory
                 return (Iteration::first() ?? Iteration::factory()->create())->id;
             },
             'name' => implode(' ', $this->faker->words),
+            'status' => 'open',
             'description' => $this->faker->paragraph,
         ];
     }
