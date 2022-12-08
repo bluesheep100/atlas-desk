@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Iteration;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -59,11 +60,13 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Project $project): View
     {
-        return view('projects.edit', compact('project'));
+        $availableUsers = User::whereNotIn('id', $project->users->map->id->toArray())->get();
+
+        return view('projects.edit', compact('project', 'availableUsers'));
     }
 
     /**
@@ -75,6 +78,20 @@ class ProjectController extends Controller
     public function update(Project $project): RedirectResponse
     {
         return Redirect::route('projects.show', compact('project'));
+    }
+
+    /**
+     * Attach the specified User to the Project.
+     *
+     * @param  \App\Models\Project $project
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function attachUser(Project $project): RedirectResponse
+    {
+        request()->validate(['user_id' => 'required|exists:App\Models\User,id']);
+        $project->users()->attach(request('user_id'));
+
+        return Redirect::route('projects.edit', compact('project'));
     }
 
     /**

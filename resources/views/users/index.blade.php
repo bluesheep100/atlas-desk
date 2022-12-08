@@ -18,7 +18,7 @@
             <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>N/A</td>
+                <td>{{ $user->isAdmin() ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ route('users.edit', compact('user')) }}" class="btn btn-info"><i class="fa-solid fa-edit"></i></a>
                     <form action="{{ route('users.destroy', compact('user')) }}" method="post" class="d-inline" onsubmit="return confirm('Are you sure?')">

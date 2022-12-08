@@ -1,16 +1,18 @@
-@props(['name', 'options', 'nullable' => false])
+@props(['name', 'label' => null, 'options' => [], 'nullable' => false])
 
 <div class="mb-3">
-    <label for="{{ $name }}" class="mb-1">{{ Str::headline($name) }}</label>
+    <label for="{{ $name }}" class="mb-1">{{ $label ?? Str::headline($name) }}</label>
     <select name="{{ $name }}" id="{{ $name }}" class="form-select @error($name) is-invalid @enderror">
         @if($nullable)
             <option value="">--</option>
         @endif
-        @foreach($options as $option)
-                <option value="{{ $option }}">
-                    {{ Str::headline($option) }}
-                </option>
-        @endforeach
+        @forelse($options as $option)
+            <option value="{{ $option }}">
+                {{ Str::headline($option) }}
+            </option>
+            @empty
+            {{ $slot }}
+        @endforelse
     </select>
 
     @error($name)

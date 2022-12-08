@@ -22,6 +22,11 @@
         </div>
         <div class="col-auto">
             <span class="fs-4">{{ $project->name }}</span>
+
+            <a href="{{ route('projects.edit', compact('project')) }}"
+               class="btn btn-sm text-info float-end">
+                <i class="fa-solid fa-edit"></i>
+            </a>
         </div>
     </div>
 
@@ -49,10 +54,6 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, quos, repellat. Ab culpa dolore ea eius
             illum necessitatibus neque nesciunt nisi quisquam temporibus? Accusantium dignissimos ea et explicabo quod,
             tenetur.
-        </div>
-        <div class="col border-end border-secondary">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aspernatur atque beatae commodi dicta
-            dolor eos est harum illo natus nihil numquam provident quasi quo, recusandae, sint tenetur voluptate.
         </div>
         <div class="col border-end border-secondary">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aspernatur atque beatae commodi dicta
