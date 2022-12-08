@@ -5,6 +5,7 @@
                 <div class="card-header fs-5">Project</div>
                 <div class="card-body">
                     <form action="{{ route('projects.update', compact('project')) }}" method="post">
+                        @method('PATCH')
                         @csrf
                         <x-forms.input name="name" :model="$project"/>
 

@@ -77,6 +77,8 @@ class ProjectController extends Controller
      */
     public function update(Project $project): RedirectResponse
     {
+        $project->update(request()->validate(Project::rules()));
+
         return Redirect::route('projects.show', compact('project'));
     }
 
