@@ -15,6 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::permanentRedirect('/', '/projects');
     Route::resource('projects', ProjectController::class);
     Route::patch('/projects/{project}/users/attach', [ProjectController::class, 'attachUser'])->name('project.attach-user');
+    Route::patch('/projects/{project}/users/detach', [ProjectController::class, 'detachUser'])->name('project.detach-user');
 
     Route::resource('projects.iterations', IterationController::class)->except(['index', 'show'])->shallow();
     Route::resource('iterations.tasks', TaskController::class)->except(['index', 'show'])->shallow();

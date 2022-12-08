@@ -20,7 +20,18 @@
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach($project->users as $user)
-                            <li class="list-group-item">{{ $user->name }}</li>
+                            <li class="list-group-item">
+                                {{ $user->name }}
+                                <form action="{{ route('project.detach-user', compact('project')) }}" method="post" class="d-inline float-end" onsubmit="return confirm('Are you sure?')">
+                                    @method('PATCH')
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </li>
                         @endforeach
                         @unset($user)
                     </ul>

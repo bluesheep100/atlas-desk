@@ -97,6 +97,20 @@ class ProjectController extends Controller
     }
 
     /**
+     * Detach the specified User from the Project.
+     *
+     * @param  \App\Models\Project $project
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function detachUser(Project $project): RedirectResponse
+    {
+        request()->validate(['user_id' => 'required|exists:App\Models\User,id']);
+        $project->users()->detach(request('user_id'));
+
+        return Redirect::route('projects.edit', compact('project'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Project  $project
