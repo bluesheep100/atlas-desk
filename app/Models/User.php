@@ -59,7 +59,7 @@ class User extends Authenticatable implements Validatable
         return $this->is_admin;
     }
 
-    public function project(): Relation
+    public function projects(): Relation
     {
         return $this->belongsToMany(Project::class);
     }

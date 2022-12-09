@@ -6,6 +6,7 @@ use App\Models\Iteration;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -18,7 +19,8 @@ class ProjectController extends Controller
      */
     public function index(): View
     {
-        return view('projects.index', ['projects' => Project::all()]);
+        return view('projects.index', [
+            'projects' => Auth::user()->isAdmin() ? Project::all() : Auth::user()->projects]);
     }
 
     /**
