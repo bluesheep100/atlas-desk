@@ -51,7 +51,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project): View
     {
-        $iteration = Iteration::find(request('iteration')) ?? Iteration::first();
+        $iteration = $project->iterations()->firstWhere('count', request('iteration')) ??
+            $project->iterations()->latest()->first();
 
         return view('projects.show', compact('project', 'iteration'));
     }

@@ -63,4 +63,9 @@ class User extends Authenticatable implements Validatable
     {
         return $this->belongsToMany(Project::class);
     }
+
+    public function tasks(): Relation
+    {
+        return $this->hasMany(Task::class);
+    }
 }

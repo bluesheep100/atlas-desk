@@ -12,7 +12,7 @@ class Task extends Model implements Validatable
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'status'];
+    protected $fillable = ['iteration_id', 'user_id', 'name', 'description', 'status'];
 
     public static function rules(): array
     {
@@ -21,6 +21,11 @@ class Task extends Model implements Validatable
             'description' => ['present'],
             'status' => ['in:open,progress,hold,closed']
         ];
+    }
+
+    public function user(): Relation
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function iteration(): Relation

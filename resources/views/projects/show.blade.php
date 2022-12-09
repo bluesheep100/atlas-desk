@@ -1,19 +1,18 @@
 <x-app :fluid="true">
     <div class="row border border-secondary py-1">
         <div class="col-auto pe-0">
-            <a href="#" class="btn">
+            <a href="{{ route('projects.show', ['project' => $project, 'iteration' => $iteration->count - 1]) }}" class="btn">
                 <i class="fa-solid fa-angle-left fs-4"></i>
             </a>
-
         </div>
         <div class="col-auto">
-            <a href="#" class="btn">
+            <a href="{{ route('projects.show', ['project' => $project, 'iteration' => $iteration->count + 1]) }}" class="btn">
                 <i class="fa-solid fa-angle-right fs-4"></i>
             </a>
         </div>
         <div class="col">
             @if($iteration)
-                <span class="fs-4">Iteration 1</span>
+                <span class="fs-4">{{ $iteration->name }}</span>
                 <a href="{{ route('iterations.tasks.create', compact('iteration')) }}"
                    class="btn btn-info btn-sm align-baseline">
                     New Task
@@ -27,7 +26,7 @@
         </div>
 
         <div class="col-auto">
-            <a href="{{ route('projects.index') }}" class="btn">project overview</a>
+            <a href="{{ route('projects.index') }}" class="btn btn-info">Projects</a>
         </div>
 
         <div class="col-auto">

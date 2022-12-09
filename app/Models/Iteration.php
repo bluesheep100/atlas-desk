@@ -11,7 +11,7 @@ class Iteration extends Model implements Validatable
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'count'];
 
     public static function rules(): array
     {

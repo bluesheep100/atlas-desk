@@ -31,7 +31,7 @@ class TaskController extends Controller
     {
         $iteration->tasks()->create(request()->validate(Task::rules()));
 
-        return Redirect::route('iterations.show', compact('iteration'));
+        return Redirect::route('projects.show',['project' => $iteration->project]);
     }
 
     /**
@@ -57,6 +57,19 @@ class TaskController extends Controller
     public function update(Task $task): RedirectResponse
     {
         $task->update(request()->validate(Task::rules()));
+
+        return Redirect::route('projects.show', ['project' => $task->iteration->project]);
+    }
+
+    /**
+     * Assign the specified user to the Task.
+     *
+     * @param \App\Models\Task $task
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function setUser(Task $task): RedirectResponse
+    {
+        $task->update(request()->validate(['user_id' => 'required|numeric|exists:users,id']));
 
         return Redirect::route('projects.show', ['project' => $task->iteration->project]);
     }

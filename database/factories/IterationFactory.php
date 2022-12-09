@@ -22,6 +22,9 @@ class IterationFactory extends Factory
                 return (Project::first() ?? Project::factory()->create())->id;
             },
             'name' => implode(' ', $this->faker->words),
+            'count' => function () {
+                return Project::first()->iterations()->count() + 1;
+            }
         ];
     }
 }

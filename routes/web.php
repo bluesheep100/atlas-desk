@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('projects.iterations', IterationController::class)->except(['index', 'show'])->shallow();
     Route::resource('iterations.tasks', TaskController::class)->except(['index', 'show'])->shallow();
+    Route::patch('/tasks/{task}/set-user', [TaskController::class, 'setUser'])->name('tasks.set-user');
 
     Route::resource('users', UserController::class)->except(['show']);
 });
