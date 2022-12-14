@@ -1,12 +1,12 @@
 <x-app :fluid="true">
     <div class="row border border-secondary py-1">
         <div class="col-auto pe-0">
-            <a href="{{ route('projects.show', ['project' => $project, 'iteration' => $iteration->count - 1]) }}" class="btn">
+            <a href="{{ route('projects.show', ['project' => $project, 'iteration' => optional($iteration)->count - 1]) }}" class="btn">
                 <i class="fa-solid fa-angle-left fs-4"></i>
             </a>
         </div>
         <div class="col-auto">
-            <a href="{{ route('projects.show', ['project' => $project, 'iteration' => $iteration->count + 1]) }}" class="btn">
+            <a href="{{ route('projects.show', ['project' => $project, 'iteration' => optional($iteration)->count + 1]) }}" class="btn">
                 <i class="fa-solid fa-angle-right fs-4"></i>
             </a>
         </div>
