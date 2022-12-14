@@ -31,7 +31,7 @@ class IterationController extends Controller
     public function store(Project $project): RedirectResponse
     {
          $iteration = $project->iterations()->create(request()->validate(Iteration::rules()));
-         $iteration->update(['count' => $project->iterations()->count() + 1]);
+         $iteration->update(['count' => $project->iterations()->count()]);
 
         return Redirect::route('projects.show', compact('project'));
     }
